@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<!--524,525-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        AIS3 MFCTF + pre-exam writeup - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{display:block;background:#fff;padding:.5em;color:#333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}.markdown-body{font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{font-size:16px;padding:0 1em;color:#777;border-left:.25em solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd,.popover kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{padding-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:0;padding-top:.2em;padding-bottom:.2em;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0 none}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important;position:relative}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p:last-child{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{text-align:center;background-color:inherit;border-radius:0;white-space:inherit;overflow:visible}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{max-width:100%;height:100%}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p:last-child,.markdown-body .alert>ul:last-child{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.figma{display:table;position:relative;width:100%;padding-bottom:56.25%}.figma iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;border:1px solid #eee}.MJX_Assistive_MathML{display:none}#MathJax_Message{z-index:1000!important}.ui-infobar{position:relative;z-index:2;max-width:760px;margin:25px auto -25px;color:#777}.toc .invisable-node{list-style-type:none}.ui-toc{position:fixed;bottom:20px;z-index:998}.ui-toc.both-mode{margin-left:8px}.ui-toc.both-mode .ui-toc-label{height:40px;padding:10px 4px;border-top-left-radius:0;border-bottom-left-radius:0}.ui-toc-label{background-color:#e6e6e6;border:none;color:#868686;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#fff;transition:opacity .2s}.ui-toc-label:focus{opacity:.3;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;transition:opacity .2s}.ui-toc-dropdown{margin-top:20px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif}html[lang^=ja] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html .markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html .markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html .markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html[lang^=ja] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html[lang=zh-tw] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html[lang=zh-cn] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}html .ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html .ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html .ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:#999}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:50%;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:cover}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.ui-more-info{color:#888;cursor:pointer;vertical-align:middle}.ui-more-info .fa{font-size:16px}.ui-connectedGithub,.ui-published-note{color:#888}.ui-connectedGithub{line-height:23px;white-space:nowrap}.ui-connectedGithub a.file-path{color:#888;text-decoration:none;padding-left:22px}.ui-connectedGithub a.file-path:active,.ui-connectedGithub a.file-path:hover{color:#888;text-decoration:underline}.ui-connectedGithub .fa{font-size:20px}.ui-published-note .fa{font-size:20px;vertical-align:top}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}.selectable{-webkit-user-select:text;-o-user-select:text;user-select:text}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}.site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;letter-spacing:.025em;font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] body{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}abbr[data-original-title],abbr[title]{cursor:help}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-inner comment-enabled" data-hard-breaks="false"><h1 id="AIS3-MFCTF--pre-exam-writeup" data-id="AIS3-MFCTF--pre-exam-writeup"><a class="anchor hidden-xs" href="#AIS3-MFCTF--pre-exam-writeup" title="AIS3-MFCTF--pre-exam-writeup"><span class="octicon octicon-link"></span></a><font color="black"><span>AIS3 MFCTF + pre-exam writeup</span></font></h1><p><span>（備註：有些題目是之後去問出題者的）</span></p><h2 id="MFCTF" data-id="MFCTF"><a class="anchor hidden-xs" href="#MFCTF" title="MFCTF"><span class="octicon octicon-link"></span></a><font color="#87CEEB"><span>MFCTF</span></font></h2><h3 id="祝賀新垣結衣新婚快樂-發錢囉–Forensic" data-id="祝賀新垣結衣新婚快樂-發錢囉–Forensic"><a class="anchor hidden-xs" href="#祝賀新垣結衣新婚快樂-發錢囉–Forensic" title="祝賀新垣結衣新婚快樂-發錢囉–Forensic"><span class="octicon octicon-link"></span></a><span>[祝賀]新垣結衣新婚快樂 發錢囉–Forensic</span></h3><p><img src="https://i.imgur.com/6c7hHxz.jpg" alt="" loading="lazy"></p><h4 id="看到圖片我很直覺就先拿去binwalk" data-id="看到圖片我很直覺就先拿去binwalk"><a class="anchor hidden-xs" href="#看到圖片我很直覺就先拿去binwalk" title="看到圖片我很直覺就先拿去binwalk"><span class="octicon octicon-link"></span></a><span>看到圖片我很直覺就先拿去binwalk</span></h4><pre><code class="shell hljs"><span class="hljs-meta">$ </span><span class="language-bash">binwalk -e flag.png</span>
+</code></pre><h4 id="binwalk後發現跑出兩個B3二進位檔，其中一個壓縮的zlib檔" data-id="binwalk後發現跑出兩個B3二進位檔，其中一個壓縮的zlib檔"><a class="anchor hidden-xs" href="#binwalk後發現跑出兩個B3二進位檔，其中一個壓縮的zlib檔" title="binwalk後發現跑出兩個B3二進位檔，其中一個壓縮的zlib檔"><span class="octicon octicon-link"></span></a><span>binwalk後發現跑出兩個B3二進位檔，其中一個壓縮的zlib檔</span></h4><h4 id="我第一次的作法是繼續binwalk下去，是就出現了底下很帥的畫面" data-id="我第一次的作法是繼續binwalk下去，是就出現了底下很帥的畫面"><a class="anchor hidden-xs" href="#我第一次的作法是繼續binwalk下去，是就出現了底下很帥的畫面" title="我第一次的作法是繼續binwalk下去，是就出現了底下很帥的畫面"><span class="octicon octicon-link"></span></a><span>我第一次的作法是繼續binwalk下去，是就出現了底下很帥的畫面</span></h4><h4 id="我在耍自障不要理我XD（原來檔名最長可以這麼長" data-id="我在耍自障不要理我XD（原來檔名最長可以這麼長"><a class="anchor hidden-xs" href="#我在耍自障不要理我XD（原來檔名最長可以這麼長" title="我在耍自障不要理我XD（原來檔名最長可以這麼長"><span class="octicon octicon-link"></span></a><span>我在耍自障不要理我XD（原來檔名最長可以這麼長</span></h4><p><img src="https://i.imgur.com/V1lAyOL.png" alt="" loading="lazy"></p><h4 id="很顯然這是錯誤的方法" data-id="很顯然這是錯誤的方法"><a class="anchor hidden-xs" href="#很顯然這是錯誤的方法" title="很顯然這是錯誤的方法"><span class="octicon octicon-link"></span></a><span>很顯然這是錯誤的方法</span></h4><h4 id="於是我就把裡檔案拿去foremost，然後在zlib的output檔裡面發現zip檔" data-id="於是我就把裡檔案拿去foremost，然後在zlib的output檔裡面發現zip檔"><a class="anchor hidden-xs" href="#於是我就把裡檔案拿去foremost，然後在zlib的output檔裡面發現zip檔" title="於是我就把裡檔案拿去foremost，然後在zlib的output檔裡面發現zip檔"><span class="octicon octicon-link"></span></a><span>於是我就把裡檔案拿去foremost，然後在zlib的output檔裡面發現zip檔</span></h4><pre><code class="shell hljs"><span class="hljs-meta">$ </span><span class="language-bash">foremost B3.zlib</span>
+</code></pre><h4 id="打開後就發現flag了（好有趣的flag" data-id="打開後就發現flag了（好有趣的flag"><a class="anchor hidden-xs" href="#打開後就發現flag了（好有趣的flag" title="打開後就發現flag了（好有趣的flag"><span class="octicon octicon-link"></span></a><span>打開後就發現flag了（好有趣的flag</span></h4><p><img src="https://i.imgur.com/01bfrhL.png" alt="" loading="lazy"></p><h3 id="Piano" data-id="Piano"><a class="anchor hidden-xs" href="#Piano" title="Piano"><span class="octicon octicon-link"></span></a><span>Piano</span></h3><h4 id="解開zip檔後，會發現裡面有一個裝wav音檔的資料夾、一個dll和exe檔" data-id="解開zip檔後，會發現裡面有一個裝wav音檔的資料夾、一個dll和exe檔"><a class="anchor hidden-xs" href="#解開zip檔後，會發現裡面有一個裝wav音檔的資料夾、一個dll和exe檔" title="解開zip檔後，會發現裡面有一個裝wav音檔的資料夾、一個dll和exe檔"><span class="octicon octicon-link"></span></a><span>解開zip檔後，會發現裡面有一個裝wav音檔的資料夾、一個dll和exe檔</span></h4><pre><code class="shell hljs"><span class="hljs-meta">$ </span><span class="language-bash">file piano.dll</span>
+piano.dll: PE32 executable (GUI) Intel 80386 Mono/.Net assembly, for MS Windows
+</code></pre><p><span>由Mono/.Net assembly判斷他是由C#寫的</span>
+<span>接著把它Decompile後，得到下面這個檔</span></p><pre><code class="C# hljs"><span class="hljs-comment">// Warning: Some assembly references could not be resolved automatically. This might lead to incorrect decompilation of some parts,</span>
+<span class="hljs-comment">// for ex. property getter/setter access. To get optimal decompilation results, please manually add the missing references to the list of loaded assemblies.</span>
+<span class="hljs-comment">// piano.Piano</span>
+<span class="hljs-keyword">using</span> <span class="hljs-title">System</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-title">System</span>.<span class="hljs-title">Collections</span>.<span class="hljs-title">Generic</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-title">System</span>.<span class="hljs-title">ComponentModel</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-title">System</span>.<span class="hljs-title">Drawing</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-title">System</span>.<span class="hljs-title">IO</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-title">System</span>.<span class="hljs-title">Media</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-title">System</span>.<span class="hljs-title">Windows</span>.<span class="hljs-title">Forms</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-title">piano</span>;
+
+<span class="hljs-keyword">public</span> class Piano : Form
+{
+	<span class="hljs-keyword">private</span> List&lt;Button&gt; buttons = <span class="hljs-keyword">new</span> List&lt;Button&gt;();
+
+	<span class="hljs-keyword">private</span> List&lt;<span class="hljs-keyword">int</span>&gt; notes = <span class="hljs-keyword">new</span> List&lt;<span class="hljs-keyword">int</span>&gt;();
+
+	<span class="hljs-keyword">private</span> SoundPlayer audio = <span class="hljs-keyword">new</span> SoundPlayer();
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">string</span> rootLocation = typeof(Program).get_Assembly().get_Location();
+
+	<span class="hljs-keyword">private</span> IContainer components;
+
+	<span class="hljs-keyword">private</span> Button C;
+
+	<span class="hljs-keyword">private</span> Button D;
+
+	<span class="hljs-keyword">private</span> Button E;
+
+	<span class="hljs-keyword">private</span> Button F;
+
+	<span class="hljs-keyword">private</span> Button G;
+
+	<span class="hljs-keyword">private</span> Button A;
+
+	<span class="hljs-keyword">private</span> Button B;
+
+	<span class="hljs-keyword">private</span> Button CSharp;
+
+	<span class="hljs-keyword">private</span> Button DSharp;
+
+	<span class="hljs-keyword">private</span> Button FSharp;
+
+	<span class="hljs-keyword">private</span> Button GSharp;
+
+	<span class="hljs-keyword">private</span> Button ASharp;
+
+	<span class="hljs-keyword">public</span> Piano()
+		: <span class="hljs-built_in">this</span>()
+	{
+		<span class="hljs-comment">//IL_0017: Unknown result type (might be due to invalid IL or missing references)</span>
+		<span class="hljs-comment">//IL_0021: Expected O, but got Unknown</span>
+		<span class="hljs-comment">//IL_00e8: Unknown result type (might be due to invalid IL or missing references)</span>
+		<span class="hljs-comment">//IL_00ed: Unknown result type (might be due to invalid IL or missing references)</span>
+		<span class="hljs-comment">//IL_00fe: Unknown result type (might be due to invalid IL or missing references)</span>
+		<span class="hljs-comment">//IL_0108: Expected O, but got Unknown</span>
+		InitializeComponent();
+		List&lt;Button&gt; obj = <span class="hljs-keyword">new</span> List&lt;Button&gt;();
+		obj.Add(C);
+		obj.Add(D);
+		obj.Add(E);
+		obj.Add(F);
+		obj.Add(G);
+		obj.Add(A);
+		obj.Add(B);
+		obj.Add(CSharp);
+		obj.Add(DSharp);
+		obj.Add(FSharp);
+		obj.Add(GSharp);
+		obj.Add(ASharp);
+		buttons = obj;
+		Enumerator&lt;Button&gt; enumerator = buttons.GetEnumerator();
+		<span class="hljs-keyword">try</span>
+		{
+			<span class="hljs-keyword">while</span> (enumerator.MoveNext())
+			{
+				((Control)enumerator.get_Current()).add_Click(<span class="hljs-keyword">new</span> EventHandler(onClickHandler));
+			}
+		}
+		finally
+		{
+			((global::System.IDisposable)enumerator).Dispose();
+		}
+	}
+
+	<span class="hljs-keyword">private</span> void onClickHandler(object sender, EventArgs e)
+	{
+		<span class="hljs-comment">//IL_0001: Unknown result type (might be due to invalid IL or missing references)</span>
+		<span class="hljs-comment">//IL_0007: Expected O, but got Unknown</span>
+		<span class="hljs-comment">//IL_0071: Unknown result type (might be due to invalid IL or missing references)</span>
+		Button val = (Button)sender;
+		notes.Add(buttons.IndexOf(val));
+		audio.set_SoundLocation(Path.Combine(rootLocation, <span class="hljs-string">"..\\Resources\\"</span> + ((Control)val).get_Name() + <span class="hljs-string">".wav"</span>));
+		audio.Play();
+		<span class="hljs-keyword">if</span> (notes.get_Count() == <span class="hljs-number">14</span>)
+		{
+			<span class="hljs-keyword">if</span> (isValid())
+			{
+				MessageBox.Show(nya());
+			}
+			notes.RemoveAt(<span class="hljs-number">0</span>);
+		}
+	}
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">bool</span> isValid()
+	{
+		List&lt;<span class="hljs-keyword">int</span>&gt; obj = <span class="hljs-keyword">new</span> List&lt;<span class="hljs-keyword">int</span>&gt;();
+		obj.Add(<span class="hljs-number">14</span>);
+		obj.Add(<span class="hljs-number">17</span>);
+		obj.Add(<span class="hljs-number">20</span>);
+		obj.Add(<span class="hljs-number">21</span>);
+		obj.Add(<span class="hljs-number">22</span>);
+		obj.Add(<span class="hljs-number">21</span>);
+		obj.Add(<span class="hljs-number">19</span>);
+		obj.Add(<span class="hljs-number">18</span>);
+		obj.Add(<span class="hljs-number">12</span>);
+		obj.Add(<span class="hljs-number">6</span>);
+		obj.Add(<span class="hljs-number">11</span>);
+		obj.Add(<span class="hljs-number">16</span>);
+		obj.Add(<span class="hljs-number">15</span>);
+		obj.Add(<span class="hljs-number">14</span>);
+		List&lt;<span class="hljs-keyword">int</span>&gt; val = obj;
+		List&lt;<span class="hljs-keyword">int</span>&gt; obj2 = <span class="hljs-keyword">new</span> List&lt;<span class="hljs-keyword">int</span>&gt;();
+		obj2.Add(<span class="hljs-number">0</span>);
+		obj2.Add(<span class="hljs-number">-3</span>);
+		obj2.Add(<span class="hljs-number">0</span>);
+		obj2.Add(<span class="hljs-number">-1</span>);
+		obj2.Add(<span class="hljs-number">0</span>);
+		obj2.Add(<span class="hljs-number">1</span>);
+		obj2.Add(<span class="hljs-number">1</span>);
+		obj2.Add(<span class="hljs-number">0</span>);
+		obj2.Add(<span class="hljs-number">6</span>);
+		obj2.Add(<span class="hljs-number">0</span>);
+		obj2.Add(<span class="hljs-number">-5</span>);
+		obj2.Add(<span class="hljs-number">0</span>);
+		obj2.Add(<span class="hljs-number">1</span>);
+		obj2.Add(<span class="hljs-number">0</span>);
+		List&lt;<span class="hljs-keyword">int</span>&gt; val2 = obj2;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">14</span>; i++)
+		{
+			<span class="hljs-keyword">if</span> (notes.get_Item(i) + notes.get_Item((i + <span class="hljs-number">1</span>) % <span class="hljs-number">14</span>) != val.get_Item(i))
+			{
+				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+			}
+			<span class="hljs-keyword">if</span> (notes.get_Item(i) - notes.get_Item((i + <span class="hljs-number">1</span>) % <span class="hljs-number">14</span>) != val2.get_Item(i))
+			{
+				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+			}
+		}
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	}
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">string</span> nya()
+	{
+		List&lt;<span class="hljs-keyword">int</span>&gt; obj = <span class="hljs-keyword">new</span> List&lt;<span class="hljs-keyword">int</span>&gt;();
+		obj.Add(<span class="hljs-number">70</span>);
+		obj.Add(<span class="hljs-number">78</span>);
+		obj.Add(<span class="hljs-number">89</span>);
+		obj.Add(<span class="hljs-number">57</span>);
+		obj.Add(<span class="hljs-number">112</span>);
+		obj.Add(<span class="hljs-number">60</span>);
+		obj.Add(<span class="hljs-number">125</span>);
+		obj.Add(<span class="hljs-number">96</span>);
+		obj.Add(<span class="hljs-number">103</span>);
+		obj.Add(<span class="hljs-number">104</span>);
+		obj.Add(<span class="hljs-number">50</span>);
+		obj.Add(<span class="hljs-number">109</span>);
+		obj.Add(<span class="hljs-number">87</span>);
+		obj.Add(<span class="hljs-number">115</span>);
+		obj.Add(<span class="hljs-number">112</span>);
+		obj.Add(<span class="hljs-number">54</span>);
+		obj.Add(<span class="hljs-number">100</span>);
+		obj.Add(<span class="hljs-number">97</span>);
+		obj.Add(<span class="hljs-number">103</span>);
+		obj.Add(<span class="hljs-number">56</span>);
+		obj.Add(<span class="hljs-number">85</span>);
+		obj.Add(<span class="hljs-number">101</span>);
+		obj.Add(<span class="hljs-number">56</span>);
+		obj.Add(<span class="hljs-number">119</span>);
+		obj.Add(<span class="hljs-number">119</span>);
+		obj.Add(<span class="hljs-number">100</span>);
+		obj.Add(<span class="hljs-number">59</span>);
+		obj.Add(<span class="hljs-number">88</span>);
+		obj.Add(<span class="hljs-number">50</span>);
+		obj.Add(<span class="hljs-number">48</span>);
+		obj.Add(<span class="hljs-number">62</span>);
+		obj.Add(<span class="hljs-number">120</span>);
+		obj.Add(<span class="hljs-number">84</span>);
+		obj.Add(<span class="hljs-number">58</span>);
+		obj.Add(<span class="hljs-number">100</span>);
+		obj.Add(<span class="hljs-number">86</span>);
+		obj.Add(<span class="hljs-number">74</span>);
+		obj.Add(<span class="hljs-number">92</span>);
+		obj.Add(<span class="hljs-number">54</span>);
+		obj.Add(<span class="hljs-number">96</span>);
+		obj.Add(<span class="hljs-number">60</span>);
+		obj.Add(<span class="hljs-number">117</span>);
+		obj.Add(<span class="hljs-number">119</span>);
+		obj.Add(<span class="hljs-number">122</span>);
+		List&lt;<span class="hljs-keyword">int</span>&gt; val = obj;
+		List&lt;char&gt; val2 = <span class="hljs-keyword">new</span> List&lt;char&gt;();
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; val.get_Count(); i++)
+		{
+			val2.Add((char)(val.get_Item(i) ^ notes.get_Item(i % notes.get_Count())));
+		}
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">string</span>(val2.ToArray());
+	}
+
+	protected <span class="hljs-keyword">override</span> void Dispose(<span class="hljs-keyword">bool</span> disposing)
+	{
+		<span class="hljs-keyword">if</span> (disposing &amp;&amp; components != null)
+		{
+			((global::System.IDisposable)components).Dispose();
+		}
+		((Form)<span class="hljs-built_in">this</span>).Dispose(disposing);
+	}
+
+	<span class="hljs-keyword">private</span> void InitializeComponent()
+	{
+		C = <span class="hljs-keyword">new</span> Button();
+		D = <span class="hljs-keyword">new</span> Button();
+		E = <span class="hljs-keyword">new</span> Button();
+		F = <span class="hljs-keyword">new</span> Button();
+		G = <span class="hljs-keyword">new</span> Button();
+		A = <span class="hljs-keyword">new</span> Button();
+		B = <span class="hljs-keyword">new</span> Button();
+		CSharp = <span class="hljs-keyword">new</span> Button();
+		DSharp = <span class="hljs-keyword">new</span> Button();
+		FSharp = <span class="hljs-keyword">new</span> Button();
+		GSharp = <span class="hljs-keyword">new</span> Button();
+		ASharp = <span class="hljs-keyword">new</span> Button();
+		((Control)<span class="hljs-built_in">this</span>).SuspendLayout();
+		((Control)C).set_AccessibleName(<span class="hljs-string">"C"</span>);
+		((Control)C).set_BackColor(Color.get_White());
+		((Control)C).set_Font(<span class="hljs-keyword">new</span> Font(<span class="hljs-string">"Segoe UI"</span>, <span class="hljs-number">20.25</span>f, (FontStyle)<span class="hljs-number">0</span>, (GraphicsUnit)<span class="hljs-number">3</span>));
+		((Control)C).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">30</span>, <span class="hljs-number">50</span>));
+		((Control)C).set_Name(<span class="hljs-string">"C"</span>);
+		((Control)C).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">100</span>, <span class="hljs-number">295</span>));
+		((Control)C).set_TabIndex(<span class="hljs-number">0</span>);
+		((Control)C).set_Text(<span class="hljs-string">"C"</span>);
+		((ButtonBase)C).set_TextAlign((ContentAlignment)<span class="hljs-number">512</span>);
+		((ButtonBase)C).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)D).set_AccessibleName(<span class="hljs-string">"D"</span>);
+		((Control)D).set_BackColor(Color.get_White());
+		((Control)D).set_Font(<span class="hljs-keyword">new</span> Font(<span class="hljs-string">"Segoe UI"</span>, <span class="hljs-number">20.25</span>f, (FontStyle)<span class="hljs-number">0</span>, (GraphicsUnit)<span class="hljs-number">3</span>));
+		((Control)D).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">136</span>, <span class="hljs-number">50</span>));
+		((Control)D).set_Name(<span class="hljs-string">"D"</span>);
+		((Control)D).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">100</span>, <span class="hljs-number">295</span>));
+		((Control)D).set_TabIndex(<span class="hljs-number">1</span>);
+		((Control)D).set_Text(<span class="hljs-string">"D"</span>);
+		((ButtonBase)D).set_TextAlign((ContentAlignment)<span class="hljs-number">512</span>);
+		((ButtonBase)D).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)E).set_AccessibleName(<span class="hljs-string">"E"</span>);
+		((Control)E).set_BackColor(Color.get_White());
+		((Control)E).set_Font(<span class="hljs-keyword">new</span> Font(<span class="hljs-string">"Segoe UI"</span>, <span class="hljs-number">20.25</span>f, (FontStyle)<span class="hljs-number">0</span>, (GraphicsUnit)<span class="hljs-number">3</span>));
+		((Control)E).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">242</span>, <span class="hljs-number">50</span>));
+		((Control)E).set_Name(<span class="hljs-string">"E"</span>);
+		((Control)E).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">100</span>, <span class="hljs-number">295</span>));
+		((Control)E).set_TabIndex(<span class="hljs-number">2</span>);
+		((Control)E).set_Text(<span class="hljs-string">"E"</span>);
+		((ButtonBase)E).set_TextAlign((ContentAlignment)<span class="hljs-number">512</span>);
+		((ButtonBase)E).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)F).set_AccessibleName(<span class="hljs-string">"F"</span>);
+		((Control)F).set_BackColor(Color.get_White());
+		((Control)F).set_Font(<span class="hljs-keyword">new</span> Font(<span class="hljs-string">"Segoe UI"</span>, <span class="hljs-number">20.25</span>f, (FontStyle)<span class="hljs-number">0</span>, (GraphicsUnit)<span class="hljs-number">3</span>));
+		((Control)F).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">348</span>, <span class="hljs-number">50</span>));
+		((Control)F).set_Name(<span class="hljs-string">"F"</span>);
+		((Control)F).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">100</span>, <span class="hljs-number">295</span>));
+		((Control)F).set_TabIndex(<span class="hljs-number">3</span>);
+		((Control)F).set_Text(<span class="hljs-string">"F"</span>);
+		((ButtonBase)F).set_TextAlign((ContentAlignment)<span class="hljs-number">512</span>);
+		((ButtonBase)F).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)G).set_AccessibleName(<span class="hljs-string">"G"</span>);
+		((Control)G).set_BackColor(Color.get_White());
+		((Control)G).set_Font(<span class="hljs-keyword">new</span> Font(<span class="hljs-string">"Segoe UI"</span>, <span class="hljs-number">20.25</span>f, (FontStyle)<span class="hljs-number">0</span>, (GraphicsUnit)<span class="hljs-number">3</span>));
+		((Control)G).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">454</span>, <span class="hljs-number">50</span>));
+		((Control)G).set_Name(<span class="hljs-string">"G"</span>);
+		((Control)G).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">100</span>, <span class="hljs-number">295</span>));
+		((Control)G).set_TabIndex(<span class="hljs-number">4</span>);
+		((Control)G).set_Text(<span class="hljs-string">"G"</span>);
+		((ButtonBase)G).set_TextAlign((ContentAlignment)<span class="hljs-number">512</span>);
+		((ButtonBase)G).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)A).set_AccessibleName(<span class="hljs-string">"A"</span>);
+		((Control)A).set_BackColor(Color.get_White());
+		((Control)A).set_Font(<span class="hljs-keyword">new</span> Font(<span class="hljs-string">"Segoe UI"</span>, <span class="hljs-number">20.25</span>f, (FontStyle)<span class="hljs-number">0</span>, (GraphicsUnit)<span class="hljs-number">3</span>));
+		((Control)A).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">560</span>, <span class="hljs-number">50</span>));
+		((Control)A).set_Name(<span class="hljs-string">"A"</span>);
+		((Control)A).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">100</span>, <span class="hljs-number">295</span>));
+		((Control)A).set_TabIndex(<span class="hljs-number">5</span>);
+		((Control)A).set_Text(<span class="hljs-string">"A"</span>);
+		((ButtonBase)A).set_TextAlign((ContentAlignment)<span class="hljs-number">512</span>);
+		((ButtonBase)A).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)B).set_AccessibleName(<span class="hljs-string">"B"</span>);
+		((Control)B).set_BackColor(Color.get_White());
+		((Control)B).set_Font(<span class="hljs-keyword">new</span> Font(<span class="hljs-string">"Segoe UI"</span>, <span class="hljs-number">20.25</span>f, (FontStyle)<span class="hljs-number">0</span>, (GraphicsUnit)<span class="hljs-number">3</span>));
+		((Control)B).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">666</span>, <span class="hljs-number">50</span>));
+		((Control)B).set_Name(<span class="hljs-string">"B"</span>);
+		((Control)B).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">100</span>, <span class="hljs-number">295</span>));
+		((Control)B).set_TabIndex(<span class="hljs-number">6</span>);
+		((Control)B).set_Text(<span class="hljs-string">"B"</span>);
+		((ButtonBase)B).set_TextAlign((ContentAlignment)<span class="hljs-number">512</span>);
+		((ButtonBase)B).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)CSharp).set_AccessibleName(<span class="hljs-string">"CSharp"</span>);
+		((Control)CSharp).set_BackColor(Color.get_Black());
+		((Control)CSharp).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">98</span>, <span class="hljs-number">50</span>));
+		((Control)CSharp).set_Name(<span class="hljs-string">"CSharp"</span>);
+		((Control)CSharp).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">70</span>, <span class="hljs-number">163</span>));
+		((Control)CSharp).set_TabIndex(<span class="hljs-number">7</span>);
+		((ButtonBase)CSharp).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)DSharp).set_AccessibleName(<span class="hljs-string">"DSharp"</span>);
+		((Control)DSharp).set_BackColor(Color.get_Black());
+		((Control)DSharp).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">204</span>, <span class="hljs-number">50</span>));
+		((Control)DSharp).set_Name(<span class="hljs-string">"DSharp"</span>);
+		((Control)DSharp).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">70</span>, <span class="hljs-number">163</span>));
+		((Control)DSharp).set_TabIndex(<span class="hljs-number">8</span>);
+		((ButtonBase)DSharp).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)FSharp).set_AccessibleName(<span class="hljs-string">"FSharp"</span>);
+		((Control)FSharp).set_BackColor(Color.get_Black());
+		((Control)FSharp).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">416</span>, <span class="hljs-number">50</span>));
+		((Control)FSharp).set_Name(<span class="hljs-string">"FSharp"</span>);
+		((Control)FSharp).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">70</span>, <span class="hljs-number">163</span>));
+		((Control)FSharp).set_TabIndex(<span class="hljs-number">9</span>);
+		((ButtonBase)FSharp).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)GSharp).set_AccessibleName(<span class="hljs-string">"GSharp"</span>);
+		((Control)GSharp).set_BackColor(Color.get_Black());
+		((Control)GSharp).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">522</span>, <span class="hljs-number">50</span>));
+		((Control)GSharp).set_Name(<span class="hljs-string">"GSharp"</span>);
+		((Control)GSharp).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">70</span>, <span class="hljs-number">163</span>));
+		((Control)GSharp).set_TabIndex(<span class="hljs-number">10</span>);
+		((ButtonBase)GSharp).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)ASharp).set_AccessibleName(<span class="hljs-string">"ASharp"</span>);
+		((Control)ASharp).set_BackColor(Color.get_Black());
+		((Control)ASharp).set_Location(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">628</span>, <span class="hljs-number">50</span>));
+		((Control)ASharp).set_Name(<span class="hljs-string">"ASharp"</span>);
+		((Control)ASharp).set_Size(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">70</span>, <span class="hljs-number">163</span>));
+		((Control)ASharp).set_TabIndex(<span class="hljs-number">11</span>);
+		((ButtonBase)ASharp).set_UseVisualStyleBackColor(<span class="hljs-literal">false</span>);
+		((Control)<span class="hljs-built_in">this</span>).set_AccessibleName(<span class="hljs-string">"Piano"</span>);
+		((ContainerControl)<span class="hljs-built_in">this</span>).set_AutoScaleDimensions(<span class="hljs-keyword">new</span> SizeF(<span class="hljs-number">7</span>f, <span class="hljs-number">15</span>f));
+		((ContainerControl)<span class="hljs-built_in">this</span>).set_AutoScaleMode((AutoScaleMode)<span class="hljs-number">1</span>);
+		((Form)<span class="hljs-built_in">this</span>).set_ClientSize(<span class="hljs-keyword">new</span> Size(<span class="hljs-number">800</span>, <span class="hljs-number">450</span>));
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)ASharp);
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)GSharp);
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)FSharp);
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)DSharp);
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)CSharp);
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)B);
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)A);
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)G);
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)F);
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)E);
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)D);
+		((Control)<span class="hljs-built_in">this</span>).get_Controls().Add((Control)(object)C);
+		((Control)<span class="hljs-built_in">this</span>).set_Name(<span class="hljs-string">"Piano"</span>);
+		((Control)<span class="hljs-built_in">this</span>).set_Text(<span class="hljs-string">"Piano"</span>);
+		((Control)<span class="hljs-built_in">this</span>).ResumeLayout(<span class="hljs-literal">false</span>);
+	}
+}
+</code></pre><h4 id="看懂程式碼後，看他的條件就可以得到flag了AIS37wink1e_tw1nkl3_l1ttl3_574r_1n_C_5h4rp" data-id="看懂程式碼後，看他的條件就可以得到flag了AIS37wink1e_tw1nkl3_l1ttl3_574r_1n_C_5h4rp"><a class="anchor hidden-xs" href="#看懂程式碼後，看他的條件就可以得到flag了AIS37wink1e_tw1nkl3_l1ttl3_574r_1n_C_5h4rp" title="看懂程式碼後，看他的條件就可以得到flag了AIS37wink1e_tw1nkl3_l1ttl3_574r_1n_C_5h4rp"><span class="octicon octicon-link"></span></a><span>看懂程式碼後，看他的條件就可以得到flag了AIS3{7wink1e_tw1nkl3_l1ttl3_574r_1n_C_5h4rp}</span></h4><p><br><br></p><h2 id="pre-exam" data-id="pre-exam"><a class="anchor hidden-xs" href="#pre-exam" title="pre-exam"><span class="octicon octicon-link"></span></a><font color="#87CEEB"><span>pre-exam</span></font></h2><h3 id="microchess–Misc" data-id="microchess–Misc"><a class="anchor hidden-xs" href="#microchess–Misc" title="microchess–Misc"><span class="octicon octicon-link"></span></a><span>microchess–Misc</span></h3><h4 id="這題是一個抓stones遊戲，規則是至少抓一顆，然後一次只能抓同一堆的" data-id="這題是一個抓stones遊戲，規則是至少抓一顆，然後一次只能抓同一堆的"><a class="anchor hidden-xs" href="#這題是一個抓stones遊戲，規則是至少抓一顆，然後一次只能抓同一堆的" title="這題是一個抓stones遊戲，規則是至少抓一顆，然後一次只能抓同一堆的"><span class="octicon octicon-link"></span></a><span>這題是一個抓stones遊戲，規則是至少抓一顆，然後一次只能抓同一堆的</span></h4><p><img src="https://i.imgur.com/aeNNBVS.png" alt="" loading="lazy"><br><br></p><h4 id="code裡有註解這個AI是有必勝方法的，所以你是不可能玩嬴它，所以一定要抓到這個遊戲或AI的漏洞" data-id="code裡有註解這個AI是有必勝方法的，所以你是不可能玩嬴它，所以一定要抓到這個遊戲或AI的漏洞"><a class="anchor hidden-xs" href="#code裡有註解這個AI是有必勝方法的，所以你是不可能玩嬴它，所以一定要抓到這個遊戲或AI的漏洞" title="code裡有註解這個AI是有必勝方法的，所以你是不可能玩嬴它，所以一定要抓到這個遊戲或AI的漏洞"><span class="octicon octicon-link"></span></a><span>code裡有註解這個AI是有必勝方法的，所以你是不可能玩嬴它，所以一定要抓到這個遊戲或AI的漏洞</span></h4><h4 id="玩一玩會發現它沒寫到what-you-choose的錯誤碼，如果選擇0-2以外，它會跳過你的回合" data-id="玩一玩會發現它沒寫到what-you-choose的錯誤碼，如果選擇0-2以外，它會跳過你的回合"><a class="anchor hidden-xs" href="#玩一玩會發現它沒寫到what-you-choose的錯誤碼，如果選擇0-2以外，它會跳過你的回合" title="玩一玩會發現它沒寫到what-you-choose的錯誤碼，如果選擇0-2以外，它會跳過你的回合"><span class="octicon octicon-link"></span></a><span>玩一玩會發現它沒寫到what you choose的錯誤碼，如果選擇0-2以外，它會跳過你的回合</span></h4><h4 id="當我剩下兩堆兩顆該我時，本來一定是它嬴，但此時利用漏洞輸入3，AI就抓了那顆本來應該我抓的" data-id="當我剩下兩堆兩顆該我時，本來一定是它嬴，但此時利用漏洞輸入3，AI就抓了那顆本來應該我抓的"><a class="anchor hidden-xs" href="#當我剩下兩堆兩顆該我時，本來一定是它嬴，但此時利用漏洞輸入3，AI就抓了那顆本來應該我抓的" title="當我剩下兩堆兩顆該我時，本來一定是它嬴，但此時利用漏洞輸入3，AI就抓了那顆本來應該我抓的"><span class="octicon octicon-link"></span></a><span>當我剩下兩堆兩顆該我時，本來一定是它嬴，但此時利用漏洞輸入3，AI就抓了那顆本來應該我抓的</span></h4><h4 id="我就贏了，但是因為這是我比賽完抓的圖，所以不是nc過去玩，沒有呈現flag" data-id="我就贏了，但是因為這是我比賽完抓的圖，所以不是nc過去玩，沒有呈現flag"><a class="anchor hidden-xs" href="#我就贏了，但是因為這是我比賽完抓的圖，所以不是nc過去玩，沒有呈現flag" title="我就贏了，但是因為這是我比賽完抓的圖，所以不是nc過去玩，沒有呈現flag"><span class="octicon octicon-link"></span></a><span>我就贏了，但是因為這是我比賽完抓的圖，所以不是nc過去玩，沒有呈現flag</span><br><br></h4><p><img src="https://i.imgur.com/nxPwhPw.png" alt="" loading="lazy"><br><br></p><h3 id="microchip" data-id="microchip"><a class="anchor hidden-xs" href="#microchip" title="microchip"><span class="octicon octicon-link"></span></a><span>microchip</span></h3><h4 id="打開zip後，發現它有標頭檔cpp和h" data-id="打開zip後，發現它有標頭檔cpp和h"><a class="anchor hidden-xs" href="#打開zip後，發現它有標頭檔cpp和h" title="打開zip後，發現它有標頭檔cpp和h"><span class="octicon octicon-link"></span></a><span>打開zip後，發現它有標頭檔.cpp和.h</span></h4><h4 id="把cpp檔打開後刪掉C的部份改成python檔，如下：" data-id="把cpp檔打開後刪掉C的部份改成python檔，如下："><a class="anchor hidden-xs" href="#把cpp檔打開後刪掉C的部份改成python檔，如下：" title="把cpp檔打開後刪掉C的部份改成python檔，如下："><span class="octicon octicon-link"></span></a><span>把cpp檔打開後刪掉C的部份改成python檔，如下：</span></h4><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">track</span>(<span class="hljs-params">name, <span class="hljs-built_in">id</span></span>):
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(name) % <span class="hljs-number">4</span> == <span class="hljs-number">0</span> :
+        padded = name + <span class="hljs-string">"4444"</span>
+    <span class="hljs-keyword">elif</span> <span class="hljs-built_in">len</span>(name) % <span class="hljs-number">4</span> == <span class="hljs-number">1</span> :
+        padded = name + <span class="hljs-string">"333"</span>
+    <span class="hljs-keyword">elif</span> <span class="hljs-built_in">len</span>(name) % <span class="hljs-number">4</span> == <span class="hljs-number">2</span> :
+        padded = name + <span class="hljs-string">"22"</span>
+    <span class="hljs-keyword">elif</span> <span class="hljs-built_in">len</span>(name) % <span class="hljs-number">4</span> == <span class="hljs-number">3</span> :
+        padded = name + <span class="hljs-string">"1"</span>
+
+    keys = <span class="hljs-built_in">list</span>()
+    temp = <span class="hljs-built_in">id</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>) :
+        keys.append(temp % <span class="hljs-number">96</span>)
+        temp = <span class="hljs-built_in">int</span>(temp / <span class="hljs-number">96</span>)
+
+    result = <span class="hljs-string">""</span>
+    result2 = <span class="hljs-string">""</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(padded), <span class="hljs-number">4</span>) :
+        nums = <span class="hljs-built_in">list</span>()
+        nuus = <span class="hljs-built_in">list</span>()
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>) :
+            num = <span class="hljs-built_in">ord</span>(padded[i + j]) - <span class="hljs-number">32</span>
+            num = (num + keys[j]) % <span class="hljs-number">96</span>
+            nums.append(num + <span class="hljs-number">32</span>)
+        result += <span class="hljs-built_in">chr</span>(nums[<span class="hljs-number">3</span>])
+        result += <span class="hljs-built_in">chr</span>(nums[<span class="hljs-number">2</span>])
+        result += <span class="hljs-built_in">chr</span>(nums[<span class="hljs-number">1</span>])
+        result += <span class="hljs-built_in">chr</span>(nums[<span class="hljs-number">0</span>])
+    <span class="hljs-built_in">print</span>(result2)
+    <span class="hljs-keyword">return</span> result
+
+
+name = <span class="hljs-built_in">input</span>()
+<span class="hljs-built_in">id</span> = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">"key ="</span>))
+<span class="hljs-comment">#keyss = input().split()</span>
+<span class="hljs-comment">#id = int(keyss[0])+int(keyss[1])*96+int(keyss[2])*96*96+int(keyss[3])*96*96*96</span>
+nuu = <span class="hljs-built_in">list</span>()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"result is:"</span>, track(name, <span class="hljs-built_in">id</span>))
+
+</div></div></code></pre><h4 id="會發現我們要先求出keys才能的到flag" data-id="會發現我們要先求出keys才能的到flag"><a class="anchor hidden-xs" href="#會發現我們要先求出keys才能的到flag" title="會發現我們要先求出keys才能的到flag"><span class="octicon octicon-link"></span></a><span>會發現我們要先求出keys才能的到flag</span></h4><h4 id="因為我們知道flag前面的形式為AIS3，再判斷裡面用到了96進位" data-id="因為我們知道flag前面的形式為AIS3，再判斷裡面用到了96進位"><a class="anchor hidden-xs" href="#因為我們知道flag前面的形式為AIS3，再判斷裡面用到了96進位" title="因為我們知道flag前面的形式為AIS3，再判斷裡面用到了96進位"><span class="octicon octicon-link"></span></a><span>因為我們知道flag前面的形式為AIS3{，再判斷裡面用到了96進位</span></h4><h4 id="得出keys後，在寫個逆轉程式後，可以推出flag" data-id="得出keys後，在寫個逆轉程式後，可以推出flag"><a class="anchor hidden-xs" href="#得出keys後，在寫個逆轉程式後，可以推出flag" title="得出keys後，在寫個逆轉程式後，可以推出flag"><span class="octicon octicon-link"></span></a><span>得出keys後，在寫個逆轉程式後，可以推出flag</span></h4></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li><a href="#AIS3-MFCTF--pre-exam-writeup" title="AIS3 MFCTF + pre-exam writeup">AIS3 MFCTF + pre-exam writeup</a><ul class="nav">
+<li><a href="#MFCTF" title="MFCTF">MFCTF</a><ul class="nav">
+<li><a href="#祝賀新垣結衣新婚快樂-發錢囉–Forensic" title="[祝賀]新垣結衣新婚快樂 發錢囉–Forensic">[祝賀]新垣結衣新婚快樂 發錢囉–Forensic</a></li>
+<li><a href="#Piano" title="Piano">Piano</a></li>
+</ul>
+</li>
+<li><a href="#pre-exam" title="pre-exam">pre-exam</a><ul class="nav">
+<li><a href="#microchess–Misc" title="microchess–Misc">microchess–Misc</a></li>
+<li><a href="#microchip" title="microchip">microchip</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+        <div class="toc"><ul class="nav">
+<li><a href="#AIS3-MFCTF--pre-exam-writeup" title="AIS3 MFCTF + pre-exam writeup">AIS3 MFCTF + pre-exam writeup</a><ul class="nav">
+<li><a href="#MFCTF" title="MFCTF">MFCTF</a><ul class="nav">
+<li><a href="#祝賀新垣結衣新婚快樂-發錢囉–Forensic" title="[祝賀]新垣結衣新婚快樂 發錢囉–Forensic">[祝賀]新垣結衣新婚快樂 發錢囉–Forensic</a></li>
+<li><a href="#Piano" title="Piano">Piano</a></li>
+</ul>
+</li>
+<li><a href="#pre-exam" title="pre-exam">pre-exam</a><ul class="nav">
+<li><a href="#microchess–Misc" title="microchess–Misc">microchess–Misc</a></li>
+<li><a href="#microchip" title="microchip">microchip</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a>
+	
+	<a type="button" style="display: block; padding: 4px 10px; margin-top: 10px; margin-left: 10px; font-size: 12px; font-weight: 500; color: #87CEEB; text-decoration: none;" href="../writeupmenu.html">Back to writeups</a>
+	<a type="button" style="display: block; padding: 4px 10px; margin-top: 5px; margin-left: 10px; font-size: 12px; font-weight: 500; color: #FA8072; text-decoration: none;" href="../index.html">Back to home</a>
+
+</div>    
+	</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
